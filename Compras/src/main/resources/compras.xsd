@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="t4is.uv.mx/compras"
+  xmlns:tns="t4is.uv.mx/compras" elementFormDefault="qualified">
+
+  <!-- Dependencia -->
+  <xs:element name="RecibirCompraRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nombre_cliente" type="xs:string" />
+        <xs:element name="email" type="xs:string" />
+        <xs:element name="direccion" type="xs:string" />
+        <xs:element name="rfc" type="xs:string" />
+        <xs:element name="nombre_producto" type="xs:string" />
+        <xs:element name="cantidad_producto" type="xs:int" />
+        <xs:element name="precio_producto" type="xs:double"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecibirCompraResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="folio_seguimiento" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelarCompraRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="folio" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelarCompraResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="respuesta" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EstadoCompraRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="folio" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EstadoCompraResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="respuesta" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Producto -->
+
+  <xs:element name="RegistroProductoRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nombre" type="xs:string" />
+        <xs:element name="descripcion" type="xs:string" />
+        <xs:element name="cantidad" type="xs:int" />
+        <xs:element name="precio" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistroProductoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="registro" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Contabilidad -->
+
+  <xs:element name="SolicitarPagoRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="folio_compra" type="xs:string" />
+        <xs:element name="nombre" type="xs:string" />
+        <xs:element name="cantidad" type="xs:double" />
+        <xs:element name="precio" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SolicitarPagoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="pago_status" type="xs:string" />
+        <xs:element name="status" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Presupuesto -->
+
+  <xs:element name="SolicitarPresupuestoRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="cantidad_necesaria" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SolicitarPresupuestoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="respuesta" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Factura -->
+
+  <xs:element name="SolicitarFacturaRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="fecha" type="xs:string" />
+        <xs:element name="forma_pago" type="xs:string" />
+        <xs:element name="subtotal" type="xs:double" />
+        <xs:element name="nombre" type="xs:string" />
+        <xs:element name="cantidad" type="xs:int" />
+        <xs:element name="precio" type="xs:double" />
+        <xs:element name="regimen" type="xs:string" />
+        <xs:element name="domicilio" type="xs:string" />
+        <xs:element name="descripcion" type="xs:string" />
+        <xs:element name="valor_unitario" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SolicitarFacturaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="uuid" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- Inventario -->
+
+  <xs:element name="GenerarFolioRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="orden_compra" type="xs:string" />
+        <xs:element name="uuid" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GenerarFolioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="folio" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
