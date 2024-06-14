@@ -11,6 +11,8 @@ import mx.uv.t4is.dependencia.SolicitarCompraRequest;
 import mx.uv.t4is.dependencia.SolicitarCompraResponse;
 import mx.uv.t4is.dependencia.SolicitarSeguimientoRequest;
 import mx.uv.t4is.dependencia.SolicitarSeguimientoResponse;
+import xx.mx.uv.consumo.wsdl.EstadoCompraRequest;
+import xx.mx.uv.consumo.wsdl.EstadoCompraResponse;
 import xx.mx.uv.consumo.wsdl.RecibirCompraRequest;
 import xx.mx.uv.consumo.wsdl.RecibirCompraResponse;
 
@@ -29,6 +31,7 @@ public class DependenciaEndPoint {
   
     SolicitarCompraResponse respuesta = new SolicitarCompraResponse();
     SolicitarCompraRequest solicitar = new SolicitarCompraRequest();
+
     RecibirCompraRequest recibir = new RecibirCompraRequest();
   
     solicitar.setNombreCliente(peticion.getNombreCliente());
@@ -50,13 +53,19 @@ public class DependenciaEndPoint {
     //respuesta.setFolioCompra("respuesta");
     RecibirCompraResponse respuestaCompra = compraCliente.solicitarCompra(recibir);
     System.out.println(respuestaCompra.getFolioSeguimiento());
-    
+
+    /* double total=0;
+    total = recibir.getCantidadProducto() * recibir.getPrecioProducto();
+    String totalF = String.format("%.2f", total); */
+
+    respuesta.setTotalCompra("El total de la compra es: " + respuestaCompra.getTotalCompra());
     respuesta.setFolioCompra("El folio de seguimiento de tu compra es: " + respuestaCompra.getFolioSeguimiento());
 
     Dependencias dependencias= new Dependencias();
     dependencias.setNombreCliente(peticion.getNombreCliente());
     dependencias.setCorreoElectronico(peticion.getEmail());
     dependencias.setFolio(respuesta.getFolioCompra());
+    
     iDependencias.save(dependencias);
     return respuesta;
   }
@@ -66,12 +75,16 @@ public class DependenciaEndPoint {
   public SolicitarSeguimientoResponse solicitarSeguimiento(@RequestPayload SolicitarSeguimientoRequest peticion) {
     SolicitarSeguimientoResponse respuesta = new SolicitarSeguimientoResponse();
     SolicitarSeguimientoRequest seguimiento = new SolicitarSeguimientoRequest();
+    EstadoCompraRequest estado = new EstadoCompraRequest();
     
     String resultado = peticion.getFolioSeguimiento().toString();
+
     seguimiento.setFolioSeguimiento(peticion.getFolioSeguimiento());
+    estado.setFolio(peticion.getFolioSeguimiento());
 
+    EstadoCompraResponse respuestaEstado = compraCliente.solicitarSeguimiento(estado);
 
-    respuesta.setRespuesta(resultado);
+    respuesta.setRespuesta(respuestaEstado.getRespuesta());
     return respuesta;
 
   }

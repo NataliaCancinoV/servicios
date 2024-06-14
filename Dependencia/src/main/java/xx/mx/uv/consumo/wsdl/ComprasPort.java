@@ -119,4 +119,16 @@ public interface ComprasPort {
         @WebParam(name = "SolicitarPresupuestoRequest", targetNamespace = "t4is.uv.mx/compras", partName = "SolicitarPresupuestoRequest")
         SolicitarPresupuestoRequest solicitarPresupuestoRequest);
 
+    /**
+     * 
+     * @param solicitarProductosRequest
+     * @return
+     *     returns xx.mx.uv.consumo.wsdl.SolicitarProductosResponse
+     */
+    @WebMethod(operationName = "SolicitarProductos")
+    @WebResult(name = "SolicitarProductosResponse", targetNamespace = "t4is.uv.mx/compras", partName = "SolicitarProductosResponse")
+    public SolicitarProductosResponse solicitarProductos(
+        @WebParam(name = "SolicitarProductosRequest", targetNamespace = "t4is.uv.mx/compras", partName = "SolicitarProductosRequest")
+        Object solicitarProductosRequest);
+
 }

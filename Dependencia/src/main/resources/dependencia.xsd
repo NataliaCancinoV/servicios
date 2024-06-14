@@ -18,24 +18,26 @@
   <xs:element name="SolicitarCompraResponse">
     <xs:complexType>
       <xs:sequence>
+        <xs:element name="totalCompra" type="xs:string" />
         <xs:element name="folioCompra" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SolicitarSeguimientoRequest">
 
+  <xs:element name="SolicitarSeguimientoRequest">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="folioSeguimiento" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SolicitarSeguimientoResponse">
 
+  <xs:element name="SolicitarSeguimientoResponse">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="respuesta" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+
 </xs:schema>

@@ -1,6 +1,9 @@
 
 package xx.mx.uv.consumo.wsdl;
 
+import javax.xml.namespace.QName;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.annotation.XmlElementDecl;
 import jakarta.xml.bind.annotation.XmlRegistry;
 
 
@@ -21,12 +24,21 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _SolicitarProductosRequest_QNAME = new QName("t4is.uv.mx/compras", "SolicitarProductosRequest");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: xx.mx.uv.consumo.wsdl
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link SolicitarProductosResponse }
+     * 
+     */
+    public SolicitarProductosResponse createSolicitarProductosResponse() {
+        return new SolicitarProductosResponse();
     }
 
     /**
@@ -94,6 +106,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SolicitarProductosResponse.Producto }
+     * 
+     */
+    public SolicitarProductosResponse.Producto createSolicitarProductosResponseProducto() {
+        return new SolicitarProductosResponse.Producto();
+    }
+
+    /**
      * Create an instance of {@link SolicitarPagoRequest }
      * 
      */
@@ -155,6 +175,19 @@ public class ObjectFactory {
      */
     public GenerarFolioResponse createGenerarFolioResponse() {
         return new GenerarFolioResponse();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link Object }{@code >}
+     */
+    @XmlElementDecl(namespace = "t4is.uv.mx/compras", name = "SolicitarProductosRequest")
+    public JAXBElement<Object> createSolicitarProductosRequest(Object value) {
+        return new JAXBElement<Object>(_SolicitarProductosRequest_QNAME, Object.class, null, value);
     }
 
 }

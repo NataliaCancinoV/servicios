@@ -18,6 +18,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
+ *         &lt;element name="totalCompra" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="folio_seguimiento" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -29,13 +30,40 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "totalCompra",
     "folioSeguimiento"
 })
 @XmlRootElement(name = "RecibirCompraResponse")
 public class RecibirCompraResponse {
 
+    @XmlElement(required = true)
+    protected String totalCompra;
     @XmlElement(name = "folio_seguimiento", required = true)
     protected String folioSeguimiento;
+
+    /**
+     * Obtiene el valor de la propiedad totalCompra.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTotalCompra() {
+        return totalCompra;
+    }
+
+    /**
+     * Define el valor de la propiedad totalCompra.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTotalCompra(String value) {
+        this.totalCompra = value;
+    }
 
     /**
      * Obtiene el valor de la propiedad folioSeguimiento.

@@ -14,6 +14,7 @@ public class Dependencias {
     String nombreCliente;
     String correoElectronico;
     String folio;
+    String estado = "Compra en preparacion";
 
     // Getters
     
@@ -29,6 +30,10 @@ public class Dependencias {
         return folio;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
     // Setters
     
     public void setNombreCliente(String nombreCliente) {
@@ -41,5 +46,9 @@ public class Dependencias {
 
     public void setFolio(String folio) {
         this.folio = folio;
+    }
+
+    public void setEstado(String estado){
+        this.estado = estado;
     }
 }

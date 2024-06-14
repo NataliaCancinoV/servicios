@@ -17,7 +17,7 @@ import jakarta.xml.ws.WebServiceFeature;
  * Generated source version: 3.0
  * 
  */
-@WebServiceClient(name = "comprasPortService", targetNamespace = "t4is.uv.mx/compras", wsdlLocation = "https://compras-production-66f2.up.railway.app/ws/compras.wsdl")
+@WebServiceClient(name = "comprasPortService", targetNamespace = "t4is.uv.mx/compras", wsdlLocation = "https://compras-production-8e4a.up.railway.app/ws/compras.wsdl")
 public class ComprasPortService
     extends Service
 {
@@ -30,7 +30,7 @@ public class ComprasPortService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://compras-production-66f2.up.railway.app/ws/compras.wsdl");
+            url = new URL("https://compras-production-8e4a.up.railway.app/ws/compras.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

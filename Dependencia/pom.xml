@@ -108,7 +108,7 @@
                 <configuration>
                     <packageName>xx.mx.uv.consumo.wsdl</packageName>
                     <wsdlUrls>
-                        <wsdlUrl>https://compras-production-66f2.up.railway.app/ws/compras.wsdl</wsdlUrl>
+                        <wsdlUrl>http://localhost:8080/ws/compras.wsdl</wsdlUrl>
                     </wsdlUrls>
                     <sourceDestDir>${project.basedir}/src/main/java</sourceDestDir>
                 </configuration>
