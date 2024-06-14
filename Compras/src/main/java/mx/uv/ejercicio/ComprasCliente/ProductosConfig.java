@@ -18,7 +18,7 @@ public class ProductosConfig {
     public ProductosCliente clienteProductos(Jaxb2Marshaller marshallerCompra){
         ProductosCliente c = new ProductosCliente();
         // URI donde está el servicio
-        c.setDefaultUri("https://productos-production-cf46.up.railway.app/ws/productos");
+        c.setDefaultUri("https://productos-production-ed50.up.railway.app/ws/productos");
         c.setMarshaller(marshallerCompra);
         c.setUnmarshaller(marshallerCompra);
         return c;

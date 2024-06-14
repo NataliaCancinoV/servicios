@@ -108,7 +108,7 @@
                 <configuration>
                     <packageName>xx.mx.uv.consumo.wsdl</packageName>
                     <wsdlUrls>
-                        <wsdlUrl>https://productos-production-cf46.up.railway.app/ws/productos.wsdl</wsdlUrl>
+                        <wsdlUrl>https://productos-production-ed50.up.railway.app/ws/productos.wsdl</wsdlUrl>
                     </wsdlUrls>
                     <sourceDestDir>${project.basedir}/src/main/java</sourceDestDir>
                 </configuration>

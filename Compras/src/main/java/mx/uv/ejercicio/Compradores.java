@@ -16,8 +16,9 @@ public class Compradores {
     String direccion;
     String rfc;
     String nombreProducto;
-    int cantidad;
     double precio;
+    int cantidad;
+    String total;
     String folio;
 
     public void setNombreCliente(String nombreCliente) {
@@ -62,6 +63,12 @@ public class Compradores {
     }
     public double getPrecio() {
         return precio;
+    }
+    public void setTotalCompra(String total){
+        this.total = total;
+    }
+    public String getTotalCompra(){
+        return total;
     }
     public void setFolio(String folio) {
         this.folio = folio;

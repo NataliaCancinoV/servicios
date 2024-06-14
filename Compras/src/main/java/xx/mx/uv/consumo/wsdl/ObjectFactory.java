@@ -1,6 +1,9 @@
 
 package xx.mx.uv.consumo.wsdl;
 
+import javax.xml.namespace.QName;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.annotation.XmlElementDecl;
 import jakarta.xml.bind.annotation.XmlRegistry;
 
 
@@ -21,12 +24,21 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _ProductosRegistradosRequest_QNAME = new QName("t4is.uv.mx/productos", "ProductosRegistradosRequest");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: xx.mx.uv.consumo.wsdl
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link ProductosRegistradosResponse }
+     * 
+     */
+    public ProductosRegistradosResponse createProductosRegistradosResponse() {
+        return new ProductosRegistradosResponse();
     }
 
     /**
@@ -43,6 +55,27 @@ public class ObjectFactory {
      */
     public RegistrarProductoResponse createRegistrarProductoResponse() {
         return new RegistrarProductoResponse();
+    }
+
+    /**
+     * Create an instance of {@link ProductosRegistradosResponse.Producto }
+     * 
+     */
+    public ProductosRegistradosResponse.Producto createProductosRegistradosResponseProducto() {
+        return new ProductosRegistradosResponse.Producto();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link Object }{@code >}
+     */
+    @XmlElementDecl(namespace = "t4is.uv.mx/productos", name = "ProductosRegistradosRequest")
+    public JAXBElement<Object> createProductosRegistradosRequest(Object value) {
+        return new JAXBElement<Object>(_ProductosRegistradosRequest_QNAME, Object.class, null, value);
     }
 
 }

@@ -18,6 +18,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="precio" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
@@ -32,6 +33,7 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "id",
     "nombre",
     "descripcion",
     "precio",
@@ -40,12 +42,29 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "RegistrarProductoRequest")
 public class RegistrarProductoRequest {
 
+    protected int id;
     @XmlElement(required = true)
     protected String nombre;
     @XmlElement(required = true)
     protected String descripcion;
     protected double precio;
     protected int cantidad;
+
+    /**
+     * Obtiene el valor de la propiedad id.
+     * 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Define el valor de la propiedad id.
+     * 
+     */
+    public void setId(int value) {
+        this.id = value;
+    }
 
     /**
      * Obtiene el valor de la propiedad nombre.

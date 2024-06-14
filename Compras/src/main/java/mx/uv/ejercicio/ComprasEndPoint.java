@@ -1,7 +1,10 @@
 package mx.uv.ejercicio;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
+import java.util.*;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -9,6 +12,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import mx.uv.ejercicio.ComprasCliente.IProductos;
+import mx.uv.ejercicio.ComprasCliente.Productores;
 import mx.uv.ejercicio.ComprasCliente.ProductosCliente;
 import mx.uv.t4is.compras.CancelarCompraRequest;
 import mx.uv.t4is.compras.CancelarCompraResponse;
@@ -26,7 +31,8 @@ import mx.uv.t4is.compras.SolicitarPagoRequest;
 import mx.uv.t4is.compras.SolicitarPagoResponse;
 import mx.uv.t4is.compras.SolicitarPresupuestoRequest;
 import mx.uv.t4is.compras.SolicitarPresupuestoResponse;
-
+import mx.uv.t4is.compras.SolicitarProductosResponse;
+import xx.mx.uv.consumo.wsdl.ProductosRegistradosResponse;
 import xx.mx.uv.consumo.wsdl.RegistrarProductoRequest;
 import xx.mx.uv.consumo.wsdl.RegistrarProductoResponse;
 
@@ -42,6 +48,9 @@ public class ComprasEndPoint {
 
     @Autowired
     private ProductosCliente productosCliente;
+
+    @Autowired
+    private IProductos iProductos;
     
     @PayloadRoot(localPart = "RecibirCompraRequest", namespace = "t4is.uv.mx/compras")
     @ResponsePayload
@@ -52,6 +61,7 @@ public class ComprasEndPoint {
 
         //Generador de folio de seguimiento random
         Random random = new Random();
+        double total = 0;
 
         StringBuilder folio = new StringBuilder();
         for (int i = 0; i < 5; i++) {
@@ -62,6 +72,10 @@ public class ComprasEndPoint {
         char letter = (char) (random.nextInt(26) + 'A'); // Genera una letra aleatoria entre A y Z
         // Concatenar la letra al final del folio
         folio.append(letter);
+        
+        total = peticion.getCantidadProducto() * peticion.getPrecioProducto();
+            
+        String totalF = String.format("%.2f", total);
 
         Compradores compradores = new Compradores();
         compradores.setNombreCliente(peticion.getNombreCliente());
@@ -69,8 +83,9 @@ public class ComprasEndPoint {
         compradores.setDireccion(peticion.getDireccion());
         compradores.setRfc(peticion.getRfc());
         compradores.setNombreProducto(peticion.getNombreProducto());
-        compradores.setCantidad(peticion.getCantidadProducto());
         compradores.setPrecio(peticion.getPrecioProducto());
+        compradores.setCantidad(peticion.getCantidadProducto());
+        compradores.setTotalCompra(totalF);
         compradores.setFolio(folio.toString());
 
         iCompradores.save(compradores);
@@ -82,10 +97,11 @@ public class ComprasEndPoint {
         compra.setNombreProducto(peticion.getNombreProducto());
         compra.setCantidadProducto(peticion.getCantidadProducto());
         compra.setPrecioProducto(peticion.getPrecioProducto());
-
+        
+        respuesta.setTotalCompra(totalF);
         respuesta.setFolioSeguimiento(folio.toString());
 
-        System.out.println(respuesta.getFolioSeguimiento());
+        System.out.println("El folio de seguimiento es: " + respuesta.getFolioSeguimiento());
         return respuesta;
     }
     
@@ -150,8 +166,8 @@ public class ComprasEndPoint {
         //RegistroProductoRequest registrar = new RegistroProductoRequest();
         RegistrarProductoRequest registro = new RegistrarProductoRequest();
 
-        //registrar.setIdProducto(peticion.getIdProducto());
-        /* registrar.setNombre(peticion.getNombre());
+        /*registrar.setIdProducto(peticion.getIdProducto());
+        // registrar.setNombre(peticion.getNombre());
         registrar.setDescripcion(peticion.getDescripcion());
         registrar.setCantidad(peticion.getCantidad());
         registrar.setPrecio(peticion.getPrecio()); */
@@ -168,6 +184,62 @@ public class ComprasEndPoint {
 
         return respuesta;
     }
+
+    @PayloadRoot(localPart = "SolicitarProductosRequest", namespace = "t4is.uv.mx/compras")
+    @ResponsePayload
+    public SolicitarProductosResponse solicitarProductos(){
+        SolicitarProductosResponse respuesta = new SolicitarProductosResponse();
+
+        Iterable<Productores> productos = iProductos.findAll();
+        for(Productores producto : productos){
+        SolicitarProductosResponse.Producto productoAlmacenado = new SolicitarProductosResponse.Producto();
+            productoAlmacenado.setNombre(producto.getNombre());
+            productoAlmacenado.setId(producto.getId());
+            productoAlmacenado.setCantidad(producto.getCantidad());
+            productoAlmacenado.setPrecio(producto.getPrecio());
+            productoAlmacenado.setDescripcion(producto.getDescripcion());
+            respuesta.getProducto().add(productoAlmacenado);               
+        }        
+        return respuesta;
+    }
+
+    /* @PayloadRoot(localPart = "SolicitarProductosRequest", namespace = "t4is.uv.mx/compras")
+    @ResponsePayload
+    public SolicitarProductosResponse solicitarProductos(){
+        SolicitarProductosResponse respuesta = new SolicitarProductosResponse();
+        ProductosRegistradosResponse respuestaSolicitada = new ProductosRegistradosResponse();
+        
+        for (iterable_type iterable_element : iterable) {
+            
+        }
+        SolicitarProductosResponse.Producto producto = new SolicitarProductosResponse.Producto();
+        producto.setId(0);
+        System.out.println("Lista de productos enviada");
+
+        return respuesta;
+    }
+
+    ///ESTE ES EL QUE TENGO EN PRODUCTOS PERO ES PARA BASSARME XD
+    @PayloadRoot(localPart = "ProductosRegistradosRequest",namespace = "t4is.uv.mx/productos")
+    @ResponsePayload
+    public ProductosRegistradosResponse productosRegistrados(){
+        ProductosRegistradosResponse respuesta = new ProductosRegistradosResponse();
+
+        respuesta.set
+        Iterable<Productores> productores =iProductos.findAll();
+
+        for(Productores itemProducto : productores){
+            ProductosRegistradosResponse.Producto producto = new ProductosRegistradosResponse.Producto();
+            producto.setId(itemProducto.getId());
+            producto.setNombre(itemProducto.getNombre());
+            producto.setDescripcion(itemProducto.getDescripcion());
+            producto.setPrecio(itemProducto.getPrecio());
+            producto.setCantidad(itemProducto.getCantidad());
+            respuesta.getProducto().add(producto);
+        }
+       
+        return respuesta;
+    } */
     
     //-----------------------------------Contabilidad--------------------------------------------------
 

@@ -17,7 +17,7 @@ import jakarta.xml.ws.WebServiceFeature;
  * Generated source version: 3.0
  * 
  */
-@WebServiceClient(name = "saludosPortService", targetNamespace = "t4is.uv.mx/saludos", wsdlLocation = "https://productos-production-cf46.up.railway.app/ws/productos.wsdl")
+@WebServiceClient(name = "saludosPortService", targetNamespace = "t4is.uv.mx/saludos", wsdlLocation = "https://productos-production-ed50.up.railway.app/ws/productos.wsdl")
 public class SaludosPortService
     extends Service
 {
@@ -30,7 +30,7 @@ public class SaludosPortService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://productos-production-cf46.up.railway.app/ws/productos.wsdl");
+            url = new URL("https://productos-production-ed50.up.railway.app/ws/productos.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

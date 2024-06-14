@@ -47,11 +47,11 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "producto"
 })
-@XmlRootElement(name = "HistorialProductosResponse")
-public class HistorialProductosResponse {
+@XmlRootElement(name = "ProductosRegistradosResponse")
+public class ProductosRegistradosResponse {
 
     @XmlElement(required = true)
-    protected List<HistorialProductosResponse.Producto> producto;
+    protected List<ProductosRegistradosResponse.Producto> producto;
 
     /**
      * Gets the value of the producto property.
@@ -71,13 +71,13 @@ public class HistorialProductosResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link HistorialProductosResponse.Producto }
+     * {@link ProductosRegistradosResponse.Producto }
      * 
      * 
      */
-    public List<HistorialProductosResponse.Producto> getProducto() {
+    public List<ProductosRegistradosResponse.Producto> getProducto() {
         if (producto == null) {
-            producto = new ArrayList<HistorialProductosResponse.Producto>();
+            producto = new ArrayList<ProductosRegistradosResponse.Producto>();
         }
         return this.producto;
     }

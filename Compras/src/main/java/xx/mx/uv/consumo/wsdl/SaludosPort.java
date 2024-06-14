@@ -25,6 +25,18 @@ public interface SaludosPort {
 
     /**
      * 
+     * @param productosRegistradosRequest
+     * @return
+     *     returns xx.mx.uv.consumo.wsdl.ProductosRegistradosResponse
+     */
+    @WebMethod(operationName = "ProductosRegistrados")
+    @WebResult(name = "ProductosRegistradosResponse", targetNamespace = "t4is.uv.mx/productos", partName = "ProductosRegistradosResponse")
+    public ProductosRegistradosResponse productosRegistrados(
+        @WebParam(name = "ProductosRegistradosRequest", targetNamespace = "t4is.uv.mx/productos", partName = "ProductosRegistradosRequest")
+        Object productosRegistradosRequest);
+
+    /**
+     * 
      * @param registrarProductoRequest
      * @return
      *     returns xx.mx.uv.consumo.wsdl.RegistrarProductoResponse
