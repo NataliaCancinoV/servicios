@@ -18,7 +18,7 @@ public class CompraCliente extends WebServiceGatewaySupport{
     public RecibirCompraResponse solicitarCompra(RecibirCompraRequest request){
         try{
             return (RecibirCompraResponse) getWebServiceTemplate()
-            .marshalSendAndReceive(request, new SoapActionCallback("http://localhost:8080/ws/compras.wsdl"));
+            .marshalSendAndReceive(request, new SoapActionCallback("https://compras-production-1f78.up.railway.app/ws/compras"));
         }catch(Exception e){
             System.out.println("Error: "+e.getMessage());
             return null;
@@ -28,7 +28,7 @@ public class CompraCliente extends WebServiceGatewaySupport{
     public EstadoCompraResponse solicitarSeguimiento(EstadoCompraRequest request){
         try{
             return (EstadoCompraResponse) getWebServiceTemplate()
-            .marshalSendAndReceive(request, new SoapActionCallback("http://localhost:8080/ws/compras.wsdl"));
+            .marshalSendAndReceive(request, new SoapActionCallback("https://compras-production-1f78.up.railway.app/ws/compras"));
         }catch(Exception e){
             System.out.println("Error: "+e.getMessage());
             return null;

@@ -19,7 +19,7 @@ public class CompraConfig {
     public CompraCliente clienteCompra(Jaxb2Marshaller marshallerCompra){
         CompraCliente c = new CompraCliente();
         // URI donde está el servicio
-        c.setDefaultUri("http://localhost:8080/ws/compras.wsdl");
+        c.setDefaultUri("https://compras-production-1f78.up.railway.app/ws/compras");
         c.setMarshaller(marshallerCompra);
         c.setUnmarshaller(marshallerCompra);
         return c;
