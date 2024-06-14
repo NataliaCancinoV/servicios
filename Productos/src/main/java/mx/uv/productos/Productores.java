@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Productores {
-     String nombre;
+    String nombre;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
